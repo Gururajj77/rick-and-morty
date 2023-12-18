@@ -1,0 +1,47 @@
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  color: var(--alien-green);
+  font-family: sans-serif;
+}
+
+.portal {
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--portal-purple);
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 2s linear infinite;
+}
+
+.portal-inner {
+  width: 40px;
+  height: 40px;
+  background-color: var(--portal-purple);
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  animation: rotateInner 2s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateInner {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
