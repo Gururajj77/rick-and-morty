@@ -1,8 +1,15 @@
 import React from "react";
 import "./CharacterCard.css";
 import { getStatusClass } from "../Utils/CharacterUtilFunctions";
+import { useCharacterStore } from "../../../store/store";
 
 const CharacterCard = ({ characterCard, onNavigate }: CharacterCardProps) => {
+  const setCharacter = useCharacterStore((state) => state.setCharacter);
+
+  const showCharacterProfile = (character: Character) => {
+    setCharacter(character);
+    onNavigate(character.id);
+  };
   return (
     <>
       {characterCard.pages.map((page, i) => (
@@ -11,7 +18,7 @@ const CharacterCard = ({ characterCard, onNavigate }: CharacterCardProps) => {
             <div
               className="character-card"
               key={character.id}
-              onClick={() => onNavigate(character.id)}
+              onClick={() => showCharacterProfile(character)}
             >
               <div className="character-image">
                 <img src={character.image} alt={character.name} />

@@ -9,10 +9,12 @@ const Characters = () => {
   const { data, fetchNextPage, hasNextPage, status } = useInfiniteQuery({
     queryKey: ["characters"],
     queryFn: ({ pageParam = 1 }) => fetchCharacters(pageParam),
-    initialPageParam: 0,
+    initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.info.next ? allPages?.length + 1 : undefined;
     },
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 
   const navigate = useNavigate();
