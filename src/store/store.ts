@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { Character } from '../components/Characters/Utils/customTypes';
 
 type CharacterState = {
     character: Character | null;
