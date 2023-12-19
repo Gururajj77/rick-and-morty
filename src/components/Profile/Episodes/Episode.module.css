@@ -1,0 +1,31 @@
+.episodeCard {
+  background-color: #505050;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out;
+  max-width: 250px;
+  color: var(--lab-coat-white);
+}
+
+.episodeCard:hover {
+  transform: translateY(-3px);
+}
+
+.episodeTitle {
+  font-size: 1.1em;
+  color: var(--alien-green);
+  margin-bottom: 4px;
+}
+
+.episodeDetails,
+.episodeCode {
+  font-size: 0.85em;
+  margin-bottom: 3px;
+}
+
+.episodeCode {
+  font-weight: bold;
+  color: var(--portal-purple);
+}

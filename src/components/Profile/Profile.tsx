@@ -1,15 +1,9 @@
-import LoadingComponent from "../Utils/Loader/LoadingComponent";
 import styles from "./Profile.module.css";
 import { useCharacterStore } from "../../store/store";
+import Episode from "./Episodes/Episode";
 const Profile = () => {
   const data = useCharacterStore((state) => state.character);
-  if (status === "pending") {
-    return <LoadingComponent />;
-  }
 
-  if (status === "error") {
-    return <div>Error fetching data</div>;
-  }
   return (
     <>
       {data && (
@@ -31,15 +25,16 @@ const Profile = () => {
             <p className={styles.characterInfoP}>
               Location: {data.location.name}
             </p>
+
             <div className={styles.episodes}>
               <h3>Episodes:</h3>
-              <ul className={styles.episodesUl}>
+              <div className={styles.episodeGrid}>
                 {data.episode.map((episodeUrl: string) => (
-                  <li className={styles.episodesLi} key={episodeUrl}>
-                    Episode {episodeUrl.split("/").pop()}
-                  </li>
+                  <div className={styles.episodesLi} key={episodeUrl}>
+                    <Episode episodeUrl={episodeUrl} />
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
