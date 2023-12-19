@@ -40,7 +40,7 @@ const Locations = () => {
         <input
           type="text"
           className={styles.searchBar}
-          placeholder="Character"
+          placeholder="Location"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />

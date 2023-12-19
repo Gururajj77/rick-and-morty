@@ -6,6 +6,7 @@ import Navigation from "./components/Utils/Navigation/Navigation";
 import React, { Suspense } from "react";
 import LoadingComponent from "./components/Utils/Loader/LoadingComponent";
 import Locations from "./components/Locations/Locations";
+import Episodes from "./components/Episodes/Episodes";
 const Profile = React.lazy(() => import("./components/Profile/Profile"));
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<Characters />} />
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/locations" element={<Locations />} />
+            <Route path="/episodes" element={<Episodes />} />
           </Routes>
         </Suspense>
       </Router>

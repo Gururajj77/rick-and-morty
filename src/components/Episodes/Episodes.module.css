@@ -1,0 +1,19 @@
+.searchBarContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.searchBar {
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 10px 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  outline: none;
+  color: #333;
+  font-size: 1em;
+  cursor: pointer;
+}

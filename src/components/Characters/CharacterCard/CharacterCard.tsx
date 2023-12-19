@@ -2,6 +2,7 @@ import React from "react";
 import "./CharacterCard.css";
 import { getStatusClass } from "../Utils/CharacterUtilFunctions";
 import { useCharacterStore } from "../../../store/store";
+import { Character, CharacterCardProps } from "../Utils/customTypes";
 
 const CharacterCard = ({ characterCard, onNavigate }: CharacterCardProps) => {
   const setCharacter = useCharacterStore((state) => state.setCharacter);
@@ -16,6 +17,7 @@ const CharacterCard = ({ characterCard, onNavigate }: CharacterCardProps) => {
         <React.Fragment key={i}>
           {page.results.map((character: Character) => (
             <div
+              data-testid={`character-card-${character.id}`}
               className="character-card"
               key={character.id}
               onClick={() => showCharacterProfile(character)}

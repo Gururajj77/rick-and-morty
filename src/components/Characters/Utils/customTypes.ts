@@ -3,7 +3,7 @@ type Origin = {
     url: string;
 };
 
-type Character = {
+export type Character = {
     id: number;
     name: string;
     status: string;
@@ -23,7 +23,7 @@ type Page = {
     results: Character[];
 };
 
-type CharacterCardProps = {
+export type CharacterCardProps = {
     characterCard: {
         pages: Page[];
     };

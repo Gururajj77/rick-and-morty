@@ -21,6 +21,14 @@ const Navigation = () => {
             Locations
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/episodes"
+            className={({ isActive }) => (isActive ? "active" : undefined)}
+          >
+            Episodes
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
