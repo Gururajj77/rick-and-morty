@@ -27,4 +27,5 @@ type CharacterCardProps = {
     characterCard: {
         pages: Page[];
     };
+    onNavigate: (id: number) => void;
 };

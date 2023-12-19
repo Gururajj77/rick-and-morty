@@ -1,0 +1,51 @@
+.characterProfile {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  background-color: var(--schrodinger-grey);
+  border-radius: 15px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  color: var(--lab-coat-white);
+}
+
+.characterImage img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.characterInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.characterInfoH2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.characterInfoP {
+  margin-bottom: 5px;
+  color: var(--alien-green);
+}
+
+.episodesUl {
+  list-style-type: none;
+  padding: 0;
+}
+
+.episodesLi {
+  margin-bottom: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .characterProfile {
+    grid-template-columns: 1fr;
+  }
+}

@@ -4,6 +4,7 @@ import { fetchCharacters } from "./Utils/CharacterUtilFunctions";
 import CharacterCard from "./CharacterCard/CharacterCard";
 import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 import LoadingComponent from "../Utils/Loader/LoadingComponent";
+import { useNavigate } from "react-router-dom";
 const Characters = () => {
   const { data, fetchNextPage, hasNextPage, status } = useInfiniteQuery({
     queryKey: ["characters"],
@@ -14,7 +15,13 @@ const Characters = () => {
     },
   });
 
+  const navigate = useNavigate();
+
   const loader = useInfiniteScroll(fetchNextPage, hasNextPage);
+
+  const toCharacterProfile = (id: number) => {
+    navigate(`/profile/${id}`);
+  };
 
   if (status === "pending") {
     return <LoadingComponent />;
@@ -26,7 +33,7 @@ const Characters = () => {
 
   return (
     <div className="character-grid">
-      <CharacterCard characterCard={data} />
+      <CharacterCard characterCard={data} onNavigate={toCharacterProfile} />
       <div ref={loader} />
     </div>
   );
