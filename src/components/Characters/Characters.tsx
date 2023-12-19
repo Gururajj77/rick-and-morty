@@ -5,10 +5,34 @@ import CharacterCard from "./CharacterCard/CharacterCard";
 import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 import LoadingComponent from "../Utils/Loader/LoadingComponent";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import useDebounce from "../../hooks/useDebounce";
+import SearchBar from "./Utils/SearchBar/SearchBar";
+
 const Characters = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [genderFilter, setGenderFilter] = useState("");
+  const [searchSpecies, setSearchSpecies] = useState("");
+
+  const debouncedSearchQuery = useDebounce(searchQuery, 700);
+
   const { data, fetchNextPage, hasNextPage, status } = useInfiniteQuery({
-    queryKey: ["characters"],
-    queryFn: ({ pageParam = 1 }) => fetchCharacters(pageParam),
+    queryKey: [
+      "characters",
+      debouncedSearchQuery,
+      statusFilter,
+      genderFilter,
+      searchSpecies,
+    ],
+    queryFn: ({ pageParam = 1 }) =>
+      fetchCharacters(
+        pageParam,
+        debouncedSearchQuery,
+        statusFilter,
+        genderFilter,
+        searchSpecies
+      ),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.info.next ? allPages?.length + 1 : undefined;
@@ -20,24 +44,48 @@ const Characters = () => {
   const navigate = useNavigate();
 
   const loader = useInfiniteScroll(fetchNextPage, hasNextPage);
-
   const toCharacterProfile = (id: number) => {
     navigate(`/profile/${id}`);
   };
 
-  if (status === "pending") {
-    return <LoadingComponent />;
-  }
-
-  if (status === "error") {
-    return <div>Error fetching data</div>;
-  }
+  useEffect(() => {
+    fetchNextPage();
+  }, [
+    debouncedSearchQuery,
+    statusFilter,
+    genderFilter,
+    fetchNextPage,
+    searchSpecies,
+  ]);
 
   return (
-    <div className="character-grid">
-      <CharacterCard characterCard={data} onNavigate={toCharacterProfile} />
-      <div ref={loader} />
-    </div>
+    <>
+      <div className="searchBarContainer">
+        <SearchBar
+          searchValue={searchQuery}
+          onSearchChange={(e) => setSearchQuery(e.target.value)}
+          statusValue={statusFilter}
+          onStatusChange={(e) => setStatusFilter(e.target.value)}
+          genderValue={genderFilter}
+          onGenderChange={(e) => setGenderFilter(e.target.value)}
+          speciesValue={searchSpecies}
+          onSearchSpeciesChange={(e) => setSearchSpecies(e.target.value)}
+        />
+      </div>
+      <div className="character-grid">
+        {status === "pending" && <LoadingComponent />}
+        {status === "error" && <div>Error fetching data</div>}
+        {status === "success" && (
+          <>
+            <CharacterCard
+              characterCard={data}
+              onNavigate={toCharacterProfile}
+            />
+            <div ref={loader} />
+          </>
+        )}
+      </div>
+    </>
   );
 };
 

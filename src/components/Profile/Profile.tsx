@@ -1,6 +1,7 @@
 import styles from "./Profile.module.css";
 import { useCharacterStore } from "../../store/store";
 import Episode from "./Episodes/Episode";
+import Resident from "./Residents/Resident";
 const Profile = () => {
   const data = useCharacterStore((state) => state.character);
 
@@ -12,19 +13,24 @@ const Profile = () => {
             <img src={data.image} alt={data.name} />
           </div>
           <div className={styles.characterInfo}>
-            <h2 className={styles.characterInfoH2}>{data.name}</h2>
-            <p
-              className={`${styles.characterInfoP} ${
-                styles[data.status.toLowerCase()]
-              }`}
-            >
-              {data.status} - {data.species}
-            </p>
-            <p className={styles.characterInfoP}>Gender: {data.gender}</p>
-            <p className={styles.characterInfoP}>Origin: {data.origin.name}</p>
-            <p className={styles.characterInfoP}>
-              Location: {data.location.name}
-            </p>
+            <div className={styles.detailCard}>
+              <h2 className={styles.detailTitle}>{data.name}</h2>
+              <p
+                className={`${styles.detailInfo} ${
+                  styles[data.status.toLowerCase()]
+                }`}
+              >
+                {data.status} - {data.species}
+              </p>
+              <p className={styles.detailInfo}>Gender: {data.gender}</p>
+              <p className={styles.detailInfo}>Origin: {data.origin.name}</p>
+              <p className={styles.detailInfo}>
+                Location: {data.location.name}
+              </p>
+              <p>
+                <Resident residentCountUrl={data.location.url} />
+              </p>
+            </div>
 
             <div className={styles.episodes}>
               <h3>Episodes:</h3>

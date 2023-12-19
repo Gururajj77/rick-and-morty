@@ -43,16 +43,36 @@
   margin-bottom: 5px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .characterProfile {
-    grid-template-columns: 1fr;
-  }
-}
-
 .episodeGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 15px;
   padding: 20px;
+}
+
+.detailCard {
+  background-color: #505050;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.detailTitle {
+  font-size: 1.2em;
+  color: var(--alien-green);
+  margin-bottom: 10px;
+}
+
+.detailInfo {
+  font-size: 1em;
+  color: var(--lab-coat-white);
+  margin-bottom: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .characterProfile {
+    grid-template-columns: 1fr;
+  }
 }

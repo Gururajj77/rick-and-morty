@@ -1,0 +1,42 @@
+.searchBarContainer {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.searchBar,
+.filterSelect {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  padding: 10px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
+  color: #333;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.filterSelect:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.filterSelect:focus {
+  box-shadow: 0 0 0 2px rgba(100, 100, 250, 0.5);
+}
+
+.filterSelect option {
+  background-color: white;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .filterSelect {
+    width: 100%;
+    max-width: none;
+  }
+}

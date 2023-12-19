@@ -28,7 +28,7 @@ const CharacterCard = ({ characterCard, onNavigate }: CharacterCardProps) => {
                 <p className={`${getStatusClass(character.status)}`}>
                   {character.status} - {character.species}
                 </p>
-                <p>Last known location:</p>
+                <p>Last known location: </p>
                 <p className="location">{character.location.name}</p>
               </div>
             </div>
