@@ -3,18 +3,3 @@
   justify-content: center;
   margin: 20px;
 }
-
-.searchBar::placeholder {
-  color: rgba(255, 255, 255, 0.084);
-}
-
-.searchBar:focus {
-  width: 90%;
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-  .searchBar {
-    width: 100%;
-  }
-}

@@ -13,6 +13,14 @@ const Navigation = () => {
             Characters
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/locations"
+            className={({ isActive }) => (isActive ? "active" : undefined)}
+          >
+            Locations
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

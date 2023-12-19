@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useDebounce from "../../hooks/useDebounce";
 import SearchBar from "./Utils/SearchBar/SearchBar";
+import ErrorComponent from "../Utils/Error/ErrorComponent";
 
 const Characters = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,6 +17,7 @@ const Characters = () => {
   const [searchSpecies, setSearchSpecies] = useState("");
 
   const debouncedSearchQuery = useDebounce(searchQuery, 700);
+  const debouncedSearchSpecies = useDebounce(searchSpecies, 700);
 
   const { data, fetchNextPage, hasNextPage, status } = useInfiniteQuery({
     queryKey: [
@@ -23,7 +25,7 @@ const Characters = () => {
       debouncedSearchQuery,
       statusFilter,
       genderFilter,
-      searchSpecies,
+      debouncedSearchSpecies,
     ],
     queryFn: ({ pageParam = 1 }) =>
       fetchCharacters(
@@ -31,7 +33,7 @@ const Characters = () => {
         debouncedSearchQuery,
         statusFilter,
         genderFilter,
-        searchSpecies
+        debouncedSearchSpecies
       ),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
@@ -55,7 +57,7 @@ const Characters = () => {
     statusFilter,
     genderFilter,
     fetchNextPage,
-    searchSpecies,
+    debouncedSearchSpecies,
   ]);
 
   return (
@@ -74,7 +76,7 @@ const Characters = () => {
       </div>
       <div className="character-grid">
         {status === "pending" && <LoadingComponent />}
-        {status === "error" && <div>Error fetching data</div>}
+        {status === "error" && <ErrorComponent />}
         {status === "success" && (
           <>
             <CharacterCard

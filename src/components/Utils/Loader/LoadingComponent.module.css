@@ -1,9 +1,9 @@
-.loading-container {
+.loadingContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100px;
+  height: 100vh; /* Full viewport height */
   color: var(--alien-green);
   font-family: sans-serif;
 }
@@ -17,7 +17,7 @@
   animation: rotate 2s linear infinite;
 }
 
-.portal-inner {
+.portalInner {
   width: 40px;
   height: 40px;
   background-color: var(--portal-purple);

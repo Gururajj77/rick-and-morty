@@ -1,10 +1,9 @@
-import "./LoadingComponent.css";
-
+import styles from "./LoadingComponent.module.css";
 const LoadingComponent = () => {
   return (
-    <div className="loading-container">
-      <div className="portal">
-        <div className="portal-inner"></div>
+    <div className={styles.loadingContainer}>
+      <div className={styles.portal}>
+        <div className={styles.portalInner}></div>
       </div>
       <p>Loading adventures...</p>
     </div>
